@@ -6,6 +6,7 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import CircleAnimation from "./pages/CircleAnimation";
 import "./index.sass";
 import { BLOG_LINK } from "./utils/Constants.utils";
 
@@ -18,6 +19,7 @@ const APP = (
       <Route exact path="/" component={Home} />
       <Route exact path={BLOG_LINK} component={Blog} />
       <Route exact path={`${BLOG_LINK}:blogPostFileName`} component={BlogPost} />
+      <Route exact path="/anim" component={CircleAnimation} />
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path="/cv" component={CV} />

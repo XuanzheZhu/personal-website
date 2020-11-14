@@ -8,17 +8,20 @@ import {
   crescent,
 } from "../stylesheets/components/DarkModeToggle.module.sass";
 
-const onClickWrapper = (onClickMethod, isDark) => {
+const onClickWrapper = (onClickMethod, isDark, darkModeToggledEvent) => {
   onClickMethod(isDark);
   storage.setItem("theme", isDark.toString());
+  dispatchEvent(darkModeToggledEvent);
 };
 
 const DarkModeToggle = ({ isDark, onClickMethod }) => {
+  const darkModeToggledEvent = new CustomEvent("darkModeToggled", {detail: isDark});
+
   return (
     <button
       type="button"
       aria-label="Dark Mode Toggle"
-      onClick={(_) => onClickWrapper(onClickMethod, !isDark)}
+      onClick={(_) => onClickWrapper(onClickMethod, !isDark, darkModeToggledEvent)}
       className={`${isDark ? moon : sun} ${darkModeToggle}`}
     >
       <div className={crescent} />
